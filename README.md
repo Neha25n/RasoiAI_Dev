@@ -6,8 +6,8 @@ AI-powered recipe generation app with an Indian soul and global reach.
 
 | Layer | Tech |
 |-------|------|
-| Frontend | React 18, TypeScript, Vite, Tailwind CSS |
-| Backend | Node.js, Express, TypeScript |
+| Frontend | React 18, JavaScript, Vite, Tailwind CSS |
+| Backend | Node.js, Express, JavaScript |
 | Database | MongoDB (Mongoose) |
 | AI | Google Gemini 1.5 Flash |
 | Auth | JWT (bcrypt + jsonwebtoken) |
@@ -15,38 +15,48 @@ AI-powered recipe generation app with an Indian soul and global reach.
 
 ## Features
 
-- **AI Recipe Generation** — Gemini crafts a real recipe based on your ingredients, diet, allergies, cuisine, calories, and nutrition goals
-- **Nutrition Insight** — Personalized nutrition advice generated alongside each recipe
-- **Pantry Management** — Track what you have, organized by category
-- **Recipe Saving** — MongoDB-backed saved recipes per user
-- **Authentication** — JWT register/login/me flow
-- **Dark/Dim Mode** — Warm charcoal dim theme, persisted via localStorage
+- **AI Recipe Generation** - Gemini crafts a real recipe based on your ingredients, diet, allergies, cuisine, calories, and nutrition goals
+- **Nutrition Insight** - Personalized nutrition advice generated alongside each recipe
+- **Pantry Management** - Track what you have, organized by category
+- **Recipe Saving** - MongoDB-backed saved recipes per user
+- **Authentication** - JWT register/login/me flow
+- **Dark/Dim Mode** - Warm charcoal dim theme, persisted via localStorage
 
 ## Project Structure
 
-```
+```text
 rasoiai/
-├── client/                 # React + Vite frontend
-│   └── src/
-│       ├── components/     # Header, ThemeToggle
-│       ├── context/        # AuthContext (JWT)
-│       ├── lib/            # api.ts (axios), types.ts
-│       └── pages/          # HomePage, RecipePage, SavedPage, PantryPage, AuthPage
-└── server/                 # Node + Express backend
-    └── src/
-        ├── lib/            # db.ts (MongoDB), gemini.ts (AI)
-        ├── middleware/      # auth.ts (JWT), errorHandler.ts
-        ├── models/         # User, Recipe, PantryItem
-        └── routes/         # auth, recipes, pantry
+|-- client/                 # React + Vite frontend
+|   |-- index.html
+|   |-- src/
+|   |   |-- components/     # Header, ThemeToggle
+|   |   |-- context/        # AuthContext (JWT)
+|   |   |-- lib/            # api.js (axios), types.js helpers/constants
+|   |   |-- pages/          # HomePage, RecipePage, SavedPage, PantryPage, AuthPage
+|   |   |-- App.jsx
+|   |   |-- main.jsx
+|   |   `-- index.css
+|   |-- tailwind.config.js
+|   `-- vite.config.js
+`-- server/                 # Node + Express backend
+    |-- src/
+    |   |-- lib/            # db.js (MongoDB), gemini.js (AI)
+    |   |-- middleware/     # auth.js (JWT), errorHandler.js
+    |   |-- models/         # User, Recipe, PantryItem
+    |   |-- routes/         # auth, recipes, pantry
+    |   `-- index.js
+    `-- package.json
 ```
 
 ## Getting Started
 
 ### 1. Prerequisites
+
 - Node.js 18+
 - MongoDB running locally (`mongod`) or a MongoDB Atlas URI
 
 ### 2. Server setup
+
 ```bash
 cd server
 cp .env.example .env
@@ -56,6 +66,7 @@ npm run dev
 ```
 
 ### 3. Client setup
+
 ```bash
 cd client
 npm install
@@ -63,6 +74,7 @@ npm run dev
 ```
 
 ### 4. Or run both together (from root)
+
 ```bash
 npm install          # installs concurrently
 npm run install:all  # installs client + server deps
@@ -75,10 +87,10 @@ App runs at **http://localhost:5173**, API at **http://localhost:3001**.
 
 | Method | Path | Auth | Description |
 |--------|------|------|-------------|
-| POST | `/api/auth/register` | — | Create account |
-| POST | `/api/auth/login` | — | Login |
+| POST | `/api/auth/register` | Public | Create account |
+| POST | `/api/auth/login` | Public | Login |
 | GET | `/api/auth/me` | JWT | Get current user |
-| POST | `/api/recipes/generate` | optional | Generate via Gemini AI |
+| POST | `/api/recipes/generate` | Optional | Generate via Gemini AI |
 | POST | `/api/recipes/save` | JWT | Save a recipe |
 | GET | `/api/recipes/saved` | JWT | List saved recipes |
 | DELETE | `/api/recipes/:id` | JWT | Delete saved recipe |
