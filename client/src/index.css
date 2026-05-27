@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Playfair Display";
+    font-style: normal;
+    font-weight: 400 900;
+    font-display: swap;
+    src: url("https://fonts.gstatic.com/s/playfairdisplay/v37/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtY.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2") format("woff2");
+  }
+}
+
+/* ─── Light: warm parchment ─────────────────────────────────────── */
+:root {
+  --radius: 1.1rem;
+
+  /* Backgrounds */
+  --background:        #fdf8f2;   /* warm parchment */
+  --background-glow:   #f9ede0;   /* slightly deeper ivory */
+  --card:              #fffcf8;   /* off-white card */
+  --surface:           #f3ece2;   /* warm surface */
+
+  /* Text */
+  --foreground:        #2c1e0f;   /* warm espresso */
+  --card-foreground:   #2c1e0f;
+  --surface-foreground:#2c1e0f;
+  --muted-foreground:  #8a6f57;   /* warm taupe */
+
+  /* Brand */
+  --primary:           #c0622a;   /* terracotta */
+  --primary-foreground:#fffcf8;
+
+  /* UI */
+  --muted:             #f0e8dd;
+  --border:            #e4d5c4;
+  --input:             #f0e8dd;
+  --ring:              #c0622a;
+  --accent:            #5a8a4a;   /* sage green */
+
+  /* Ingredient status */
+  --have:              #5a8a4a;
+  --sub:               #c08a2a;
+  --buy:               #c0622a;
+
+  /* Shadows & gradients */
+  --shadow-soft: 0 1px 3px rgba(80,40,10,.06), 0 8px 28px -8px rgba(80,40,10,.13);
+  --shadow-glow: 0 18px 50px -18px rgba(192,98,42,.45);
+  --gradient-leaf: linear-gradient(135deg, #c0622a 0%, #5a8a4a 100%);
+  --gradient-warm: linear-gradient(160deg, #f9ede0 0%, #fdf8f2 50%, #f0efe8 100%);
+}
+
+/* ─── Dark: warm charcoal ────────────────────────────────────────── */
+.dark {
+  --background:        #1e1710;   /* deep warm charcoal */
+  --background-glow:   #261d13;
+  --card:              #2e2418;   /* warm dark card */
+  --surface:           #241c11;
+
+  --foreground:        #f5ede2;   /* warm cream */
+  --card-foreground:   #f5ede2;
+  --surface-foreground:#f5ede2;
+  --muted-foreground:  #a8917a;
+
+  --primary:           #e07840;   /* warmer terracotta in dark */
+  --primary-foreground:#1e1710;
+
+  --muted:             #342a1d;
+  --border:            #3e3022;
+  --input:             #382e20;
+  --ring:              #e07840;
+  --accent:            #6fa85a;
+
+  --have:              #6fa85a;
+  --sub:               #d4a040;
+  --buy:               #e07840;
+
+  --shadow-soft: 0 1px 3px rgba(0,0,0,.25), 0 8px 28px -8px rgba(0,0,0,.4);
+  --shadow-glow: 0 18px 50px -18px rgba(224,120,64,.4);
+  --gradient-leaf: linear-gradient(135deg, #e07840 0%, #6fa85a 100%);
+  --gradient-warm: linear-gradient(160deg, #26190e 0%, #1e1710 50%, #201a10 100%);
+}
+
+/* ─── Base styles ────────────────────────────────────────────────── */
+@layer base {
+  * { border-color: var(--border); box-sizing: border-box; }
+
+  html {
+    background-color: var(--background);
+    /* warm ambient glow radiating from top-center */
+    background-image:
+      radial-gradient(ellipse 80% 40% at 50% -5%, var(--background-glow) 0%, transparent 70%),
+      /* subtle paper grain via SVG noise */
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    transition: background-color 400ms ease, color 400ms ease;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    color: var(--foreground);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* Smooth theme transition */
+  body, .theme-transition * {
+    transition: background-color 400ms ease, border-color 400ms ease, color 300ms ease;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Playfair Display", ui-serif, Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* ─── Utility classes ────────────────────────────────────────────── */
+@layer utilities {
+  .font-display         { font-family: "Playfair Display", ui-serif, Georgia, serif; }
+  .bg-gradient-leaf     { background-image: var(--gradient-leaf); }
+  .bg-gradient-warm     { background-image: var(--gradient-warm); }
+  .bg-card              { background-color: var(--card); }
+  .bg-muted             { background-color: var(--muted); }
+  .bg-surface           { background-color: var(--surface); }
+  .text-muted-foreground{ color: var(--muted-foreground); }
+  .text-primary         { color: var(--primary); }
+  .border-border        { border-color: var(--border); }
+  .shadow-soft          { box-shadow: var(--shadow-soft); }
+  .shadow-glow          { box-shadow: var(--shadow-glow); }
+  .ring-ring            { --tw-ring-color: var(--ring); }
+}
+
+/* ─── Component helpers (CSS-var opacity — Tailwind v3 can't do these) ─ */
+.header-bg  { background-color: color-mix(in srgb, var(--background) 75%, transparent); }
+.diet-badge { background-color: color-mix(in srgb, var(--primary) 12%, transparent); color: var(--primary); }
+.insight-bg { background-color: color-mix(in srgb, var(--primary)  8%, transparent); border-color: color-mix(in srgb, var(--primary) 22%, transparent); }
+.chip-have  { background-color: color-mix(in srgb, var(--have) 14%, transparent); border-color: color-mix(in srgb, var(--have) 35%, transparent); }
+.chip-sub   { background-color: color-mix(in srgb, var(--sub)  18%, transparent); border-color: color-mix(in srgb, var(--sub)  38%, transparent); }
+.chip-buy   { background-color: color-mix(in srgb, var(--buy)  14%, transparent); border-color: color-mix(in srgb, var(--buy)  35%, transparent); }
+
+/* ─── Animations ─────────────────────────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.animate-fade-up   { animation: fade-up 420ms ease-out both; }
+.animate-float-slow{ animation: float-slow 6s ease-in-out infinite; }
