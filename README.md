@@ -9,7 +9,7 @@ AI-powered recipe generation app with an Indian soul and global reach.
 | Frontend | React 18, JavaScript, Vite, Tailwind CSS |
 | Backend | Node.js, Express, JavaScript |
 | Database | MongoDB (Mongoose) |
-| AI | Google Gemini 1.5 Flash |
+| AI | Google Gemini 2.5 Flash |
 | Auth | JWT (bcrypt + jsonwebtoken) |
 | Styling | CSS custom properties, light/dim theme |
 

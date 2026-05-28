@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function generateRecipe(req) {
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   const prompt = `You are RasoiAI, an expert Indian and global cuisine chef and nutritionist.
 
@@ -69,7 +69,7 @@ Rules:
 }
 
 export async function getNutritionAdvice(recipe, userGoals) {
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
   const prompt = `As a nutritionist, give a 2-3 sentence personalized nutrition insight for this recipe:
 Recipe: ${recipe.title} (${recipe.calories} cal, ${recipe.protein}g protein, ${recipe.carbs}g carbs, ${recipe.fat}g fat)
